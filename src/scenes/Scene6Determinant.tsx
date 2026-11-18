@@ -5,7 +5,7 @@ import { Arrow, Grid, toScreen } from "../lib/Grid";
 import { COLORS, IDENTITY, Mat, apply, lerpMat } from "../lib/matrix";
 
 export const SCENE6_FPS = 30;
-export const SCENE6_DURATION = Math.ceil((12.7 + 1) * SCENE6_FPS);
+export const SCENE6_DURATION = Math.ceil((13.16 + 1) * SCENE6_FPS);
 
 const STRETCH: Mat = [2, 0, 0, 1];
 const SQUASH: Mat = [1, 2, 0.5, 1];
@@ -44,8 +44,8 @@ const txt = (
 export const Scene6Determinant: React.FC = () => {
   const frame = useCurrentFrame();
   const ease = Easing.inOut(Easing.cubic);
-  const t1 = interpolate(frame, [sec(3.1), sec(5.0)], [0, 1], { ...clamp, easing: ease });
-  const t2 = interpolate(frame, [sec(6.8), sec(9.2)], [0, 1], { ...clamp, easing: ease });
+  const t1 = interpolate(frame, [sec(3.04), sec(5.1)], [0, 1], { ...clamp, easing: ease });
+  const t2 = interpolate(frame, [sec(6.9), sec(8.5)], [0, 1], { ...clamp, easing: ease });
   const m = t2 > 0 ? lerpMat(STRETCH, SQUASH, t2) : lerpMat(IDENTITY, STRETCH, t1);
 
   const det = m[0] * m[3] - m[1] * m[2];
@@ -55,11 +55,11 @@ export const Scene6Determinant: React.FC = () => {
   const [ix, iy] = toScreen(...apply(m, 1, 0));
   const [jx, jy] = toScreen(...apply(m, 0, 1));
 
-  const detOp = appear(frame, sec(5.56));
-  const zeroOp = appear(frame, sec(8.35));
-  const undoOp = appear(frame, sec(10.6));
-  const stretchPhase = frame < sec(6.7);
-  const arrowLabel = frame < sec(5.0) ? `area  1 → ${Math.abs(det) < 1.005 ? "1" : det.toFixed(1)}` : "area  1 → 2";
+  const detOp = appear(frame, sec(5.6));
+  const zeroOp = appear(frame, sec(8.5));
+  const undoOp = appear(frame, sec(10.8));
+  const stretchPhase = frame < sec(6.85);
+  const arrowLabel = frame < sec(5.1) ? `area  1 → ${Math.abs(det) < 1.005 ? "1" : det.toFixed(1)}` : "area  1 → 2";
 
   return (
     <AbsoluteFill style={{ background: COLORS.bg }}>
@@ -77,10 +77,10 @@ export const Scene6Determinant: React.FC = () => {
         {txt(jx - 70, jy - 4, "ĵ", COLORS.jhat, 54, 1, "start", true)}
 
         {txt(960, 130, "The determinant", COLORS.text, 76, appear(frame, 4), "middle")}
-        {txt(960, 215, "how much the area changes", COLORS.axis, 46, appear(frame, sec(1.9)), "middle")}
+        {txt(960, 215, "how much the area changes", COLORS.axis, 46, appear(frame, sec(1.96)), "middle")}
 
         {/* stretch phase */}
-        {stretchPhase && txt(120, 420, frame < sec(3.1) ? "area = 1" : arrowLabel, COLORS.point, 60, appear(frame, sec(2.5)))}
+        {stretchPhase && txt(120, 420, frame < sec(3.04) ? "area = 1" : arrowLabel, COLORS.point, 60, appear(frame, sec(2.61)))}
         {stretchPhase && txt(120, 520, "det = 2", COLORS.text, 84, detOp)}
 
         {/* squash phase */}
