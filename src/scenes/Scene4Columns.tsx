@@ -5,7 +5,7 @@ import { Arrow, Grid, toScreen } from "../lib/Grid";
 import { COLORS, IDENTITY, Mat, apply } from "../lib/matrix";
 
 export const SCENE4_FPS = 30;
-export const SCENE4_DURATION = Math.ceil((16.0 + 1) * SCENE4_FPS);
+export const SCENE4_DURATION = Math.ceil((16.45 + 1) * SCENE4_FPS);
 
 const SHEAR: Mat = [1, 1, 0, 1];
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -49,16 +49,16 @@ export const Scene4Columns: React.FC = () => {
   // pulse for emphasised arrows
   const pulse = (s: number, e: number) =>
     interpolate(frame, [sec(s), sec(s) + 10, sec(e) - 10, sec(e)], [0, 1, 1, 0.35], clamp);
-  const iW = 7 + 5 * pulse(4.5, 7.5);
-  const jW = 7 + 5 * pulse(7.94, 10.4);
+  const iW = 7 + 5 * pulse(4.85, 8.0);
+  const jW = 7 + 5 * pulse(8.3, 10.5);
 
-  const aMat = appear(frame, 4.5);
-  const col1 = appear(frame, 4.5);
-  const col2 = appear(frame, 7.94);
-  const a3i = appear(frame, 11.9);
-  const a2j = appear(frame, 12.9);
-  const aRes = appear(frame, 14.57);
-  const aPt = appear(frame, 10.6);
+  const aMat = appear(frame, 4.85);
+  const col1 = appear(frame, 4.85);
+  const col2 = appear(frame, 8.3);
+  const a3i = appear(frame, 12.25);
+  const a2j = appear(frame, 13.85);
+  const aRes = appear(frame, 14.97);
+  const aPt = appear(frame, 10.9);
 
   // matrix panel geometry
   const c1 = 195;
@@ -87,7 +87,7 @@ export const Scene4Columns: React.FC = () => {
 
         {/* intro: "track where î and ĵ land" */}
         {txt(960, 1030, "track where î and ĵ land", COLORS.text, 44,
-          interpolate(frame, [sec(1.3), sec(1.3) + 12, sec(3.96), sec(3.96) + 12], [0, 1, 1, 0], clamp), "middle")}
+          interpolate(frame, [sec(1.4), sec(1.4) + 12, sec(4.2), sec(4.2) + 12], [0, 1, 1, 0], clamp), "middle")}
 
         {/* matrix */}
         <g opacity={aMat}>
@@ -124,7 +124,7 @@ export const Scene4Columns: React.FC = () => {
         <line x1={ox} y1={oy} x2={px} y2={py} stroke={COLORS.point} strokeWidth={5} opacity={aRes * 0.9} />
 
         <circle cx={ox} cy={oy} r={9} fill={COLORS.text} />
-        <circle cx={px} cy={py} r={16} fill={COLORS.point} opacity={Math.max(aPt, 1 * (frame < sec(10.6) ? 1 : 1))} />
+        <circle cx={px} cy={py} r={16} fill={COLORS.point} opacity={Math.max(aPt, 1 * (frame < sec(10.9) ? 1 : 1))} />
         {txt(px + 28, py - 14, "(5, 2)", COLORS.point, 52, aRes)}
       </svg>
     </AbsoluteFill>
