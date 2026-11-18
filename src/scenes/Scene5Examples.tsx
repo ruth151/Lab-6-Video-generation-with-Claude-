@@ -4,7 +4,7 @@ import { AbsoluteFill, staticFile, Easing, interpolate, useCurrentFrame } from "
 import { COLORS, IDENTITY, Mat, lerpMat } from "../lib/matrix";
 
 export const SCENE5_FPS = 30;
-export const SCENE5_DURATION = Math.ceil((14.7 + 1) * SCENE5_FPS);
+export const SCENE5_DURATION = Math.ceil((14.72 + 1) * SCENE5_FPS);
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
@@ -115,10 +115,10 @@ type PanelDef = {
 };
 
 const PANELS: PanelDef[] = [
-  { name: "Rotation", game: "character turning / aiming", sprite: SHIP, m: [c40, -s40, s40, c40], entries: ["cos θ", "−sin θ", "sin θ", "cos θ"], start: 2.98, go: 3.2 },
-  { name: "Scale", game: "power-up grows", sprite: MUSHROOM, m: [1.8, 0, 0, 1.8], entries: ["2", "0", "0", "2"], start: 5.2, go: 5.4 },
-  { name: "Flip", game: "facing left or right", sprite: HERO, m: [-1, 0, 0, 1], entries: ["−1", "0", "0", "1"], start: 7.4, go: 7.7 },
-  { name: "Shear", game: "grass swaying in the wind", sprite: TREE, m: [1, 0.6, 0, 1], entries: ["1", "0.5", "0", "1"], start: 9.77, go: 10.9 },
+  { name: "Rotation", game: "character turning / aiming", sprite: SHIP, m: [c40, -s40, s40, c40], entries: ["cos θ", "−sin θ", "sin θ", "cos θ"], start: 3.09, go: 3.3 },
+  { name: "Scale", game: "power-up grows", sprite: MUSHROOM, m: [1.8, 0, 0, 1.8], entries: ["2", "0", "0", "2"], start: 5.15, go: 5.35 },
+  { name: "Flip", game: "facing left or right", sprite: HERO, m: [-1, 0, 0, 1], entries: ["−1", "0", "0", "1"], start: 7.26, go: 7.55 },
+  { name: "Shear", game: "grass swaying in the wind", sprite: TREE, m: [1, 0.6, 0, 1], entries: ["1", "0.5", "0", "1"], start: 9.73, go: 10.65 },
 ];
 
 const Panel: React.FC<{ def: PanelDef; x: number; frame: number }> = ({ def, x, frame }) => {
@@ -186,7 +186,7 @@ export const Scene5Examples: React.FC = () => {
       {PANELS.map((p, i) => (
         <Panel key={p.name} def={p} x={left + i * (PW + gap)} frame={frame} />
       ))}
-      <div style={{ position: "absolute", bottom: 50, width: "100%", textAlign: "center", fontSize: 48, color: COLORS.text, fontFamily: "Georgia, serif", fontStyle: "italic", opacity: interpolate(frame, [12.74 * 30, 12.74 * 30 + 15], [0, 1], clamp) }}>
+      <div style={{ position: "absolute", bottom: 50, width: "100%", textAlign: "center", fontSize: 48, color: COLORS.text, fontFamily: "Georgia, serif", fontStyle: "italic", opacity: interpolate(frame, [12.75 * 30, 12.75 * 30 + 15], [0, 1], clamp) }}>
         Same idea, different columns.
       </div>
     </AbsoluteFill>
