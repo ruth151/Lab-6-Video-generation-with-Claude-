@@ -12,3 +12,4 @@ output.mp4
 
 # Lab collect skill must not be committed
 .claude/skills/lab06-collect/
+lab06-upload/
