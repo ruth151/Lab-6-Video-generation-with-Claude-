@@ -5,6 +5,10 @@ import { Title } from "./HelloWorld/Title";
 import { Scene2Basis, SCENE2_DURATION, SCENE2_FPS } from "./scenes/Scene2Basis";
 import { Scene1Hook, SCENE1_DURATION, SCENE1_FPS } from "./scenes/Scene1Hook";
 import { Scene3Transform, SCENE3_DURATION, SCENE3_FPS } from "./scenes/Scene3Transform";
+import { Scene4Columns, SCENE4_DURATION, SCENE4_FPS } from "./scenes/Scene4Columns";
+import { Scene5Examples, SCENE5_DURATION, SCENE5_FPS } from "./scenes/Scene5Examples";
+import { Scene6Determinant, SCENE6_DURATION, SCENE6_FPS } from "./scenes/Scene6Determinant";
+import { Scene7Outro, SCENE7_DURATION, SCENE7_FPS } from "./scenes/Scene7Outro";
 import { TestClip, TEST_CLIP_DURATION, TEST_CLIP_FPS } from "./TestClip";
 
 // Each <Composition> is an entry in the sidebar!
@@ -83,6 +87,38 @@ export const RemotionRoot: React.FC = () => {
         component={Scene3Transform}
         durationInFrames={SCENE3_DURATION}
         fps={SCENE3_FPS}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Scene4Columns"
+        component={Scene4Columns}
+        durationInFrames={SCENE4_DURATION}
+        fps={SCENE4_FPS}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Scene5Examples"
+        component={Scene5Examples}
+        durationInFrames={SCENE5_DURATION}
+        fps={SCENE5_FPS}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Scene6Determinant"
+        component={Scene6Determinant}
+        durationInFrames={SCENE6_DURATION}
+        fps={SCENE6_FPS}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Scene7Outro"
+        component={Scene7Outro}
+        durationInFrames={SCENE7_DURATION}
+        fps={SCENE7_FPS}
         width={1920}
         height={1080}
       />
