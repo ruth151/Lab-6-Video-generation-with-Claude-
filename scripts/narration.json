@@ -1,0 +1,9 @@
+{
+  "scene1": "Ever wonder what happens when a game character turns? The computer has to move thousands of points at once. So how does it do that so fast? It all comes down to a tiny grid of four numbers.",
+  "scene2": "Here's a plane. Every point in it is built from just two arrows. One step right: we call that i-hat. One step up: that's j-hat. So the point three, two? It just means three i-hats, plus two j-hats.",
+  "scene3": "Now let's move the whole plane. A linear transformation follows two rules. The origin stays put. And grid lines stay straight and evenly spaced. Watch the yellow point. It rides along with the grid.",
+  "scene4": "Here's the secret. We only need to track where i-hat and j-hat land. The first column of the matrix says where i-hat lands. The second column says where j-hat lands. And the yellow point? Still three i-hats plus two j-hats. So it lands at five, two.",
+  "scene5": "Change the four numbers, and you get a different effect. A rotation turns your character. Scaling makes a power-up grow. A flip makes a sprite face the other way. And a shear? That's grass swaying in the wind. Same idea, different columns.",
+  "scene6": "One more number is worth knowing: the determinant. It tells you how much the area changes. Double the area? The determinant is two. Squash the plane flat onto a line? It's zero, and you can never undo that.",
+  "scene7": "So a matrix isn't just a box of numbers. It's a recipe. Where do the two basis arrows land? Once you know that, everything else follows."
+}
