@@ -1,5 +1,13 @@
+import { Audio } from "@remotion/media";
 import React from "react";
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  interpolate,
+  spring,
+  useCurrentFrame,
+  useVideoConfig,
+  staticFile,
+} from "remotion";
 import { Grid, toScreen } from "../lib/Grid";
 import { COLORS, IDENTITY, Mat, lerpMat } from "../lib/matrix";
 
@@ -82,47 +90,54 @@ export const Scene1Hook: React.FC = () => {
   const caption = fade(frame, 195, 20) * (1 - fade(frame, 290, 15));
 
   return (
-    <AbsoluteFill style={{ background: COLORS.bg }}>
-      <svg width={1920} height={1080}>
-        <Grid matrix={matrix} />
-        <g opacity={fade(frame, 0, 25)}>
-          <Ship x={sx} y={sy} deg={shipDeg} />
-        </g>
-
-        {/* ROTATE key prompt */}
-        <g opacity={keyOpacity} transform={`translate(260 ${900 + keyPress * 6})`}>
-          <rect x={0} y={0} width={330} height={100} rx={18} fill={keyPress > 0.5 ? COLORS.point : "#1b2750"} stroke={COLORS.axis} strokeWidth={4} />
-          <text x={165} y={66} textAnchor="middle" fontSize={50} fontWeight={700} fontFamily="Consolas, monospace" fill={keyPress > 0.5 ? COLORS.bg : COLORS.text}>
-            ROTATE
-          </text>
-        </g>
-
-        <g opacity={caption}>
-          <text x={960} y={110} textAnchor="middle" fontSize={56} fontFamily="Georgia, serif" fontStyle="italic" fill={COLORS.text}>
-            the whole grid turns, not just the ship
-          </text>
-        </g>
-
-        {/* matrix hint */}
-        <g opacity={matOpacity} transform="translate(1330 780)">
-          <rect x={-40} y={-20} width={470} height={260} rx={24} fill={COLORS.bg} stroke={COLORS.grid} strokeWidth={3} />
-          <path d="M 20 0 H 0 V 220 H 20" fill="none" stroke={COLORS.text} strokeWidth={5} />
-          <path d="M 350 0 H 370 V 220 H 350" fill="none" stroke={COLORS.text} strokeWidth={5} />
-          {matCells.map((t, i) => (
-            <text
-              key={i}
-              x={i % 2 === 0 ? 100 : 270}
-              y={i < 2 ? 85 : 185}
-              textAnchor="middle"
-              fontSize={60}
-              fontFamily="Georgia, serif"
-              fill={i % 2 === 0 ? COLORS.ihat : COLORS.jhat}
-            >
-              {t}
+    <>
+      <AbsoluteFill style={{ background: COLORS.bg }}>
+        <svg width={1920} height={1080}>
+          <Grid matrix={matrix} />
+          <g opacity={fade(frame, 0, 25)}>
+            <Ship x={sx} y={sy} deg={shipDeg} />
+          </g>
+      
+          {/* ROTATE key prompt */}
+          <g opacity={keyOpacity} transform={`translate(260 ${900 + keyPress * 6})`}>
+            <rect x={0} y={0} width={330} height={100} rx={18} fill={keyPress > 0.5 ? COLORS.point : "#1b2750"} stroke={COLORS.axis} strokeWidth={4} />
+            <text x={165} y={66} textAnchor="middle" fontSize={50} fontWeight={700} fontFamily="Consolas, monospace" fill={keyPress > 0.5 ? COLORS.bg : COLORS.text}>
+              ROTATE
             </text>
-          ))}
-        </g>
-      </svg>
-    </AbsoluteFill>
+          </g>
+      
+          <g opacity={caption}>
+            <text x={960} y={110} textAnchor="middle" fontSize={56} fontFamily="Georgia, serif" fontStyle="italic" fill={COLORS.text}>
+              the whole grid turns, not just the ship
+            </text>
+          </g>
+      
+          {/* matrix hint */}
+          <g opacity={matOpacity} transform="translate(1330 780)">
+            <rect x={-40} y={-20} width={470} height={260} rx={24} fill={COLORS.bg} stroke={COLORS.grid} strokeWidth={3} />
+            <path d="M 20 0 H 0 V 220 H 20" fill="none" stroke={COLORS.text} strokeWidth={5} />
+            <path d="M 350 0 H 370 V 220 H 350" fill="none" stroke={COLORS.text} strokeWidth={5} />
+            {matCells.map((t, i) => (
+              <text
+                key={i}
+                x={i % 2 === 0 ? 100 : 270}
+                y={i < 2 ? 85 : 185}
+                textAnchor="middle"
+                fontSize={60}
+                fontFamily="Georgia, serif"
+                fill={i % 2 === 0 ? COLORS.ihat : COLORS.jhat}
+              >
+                {t}
+              </text>
+            ))}
+          </g>
+        </svg>
+      </AbsoluteFill>
+      <Audio
+        src={staticFile("audio/scene2.wav")}
+        durationInFrames={377.6}
+        from={410}
+      />
+    </>
   );
 };

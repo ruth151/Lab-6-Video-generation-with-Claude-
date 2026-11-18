@@ -1,10 +1,11 @@
 import React from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
+import { Audio } from "@remotion/media";
+import { AbsoluteFill, staticFile, Easing, interpolate, useCurrentFrame } from "remotion";
 import { Arrow, Grid, toScreen } from "../lib/Grid";
 import { COLORS, IDENTITY, Mat, apply, lerpMat } from "../lib/matrix";
 
 export const SCENE3_FPS = 30;
-export const SCENE3_DURATION = 13 * SCENE3_FPS;
+export const SCENE3_DURATION = 14 * SCENE3_FPS; // narration 12.7 s + tail
 
 const SHEAR: Mat = [1, 1, 0, 1];
 
@@ -34,7 +35,7 @@ const caption = (text: string, opacity: number) => (
 
 export const Scene3Transform: React.FC = () => {
   const frame = useCurrentFrame();
-  const t = interpolate(frame, [90, 270], [0, 1], {
+  const t = interpolate(frame, [60, 340], [0, 1], {
     ...clamp,
     easing: Easing.inOut(Easing.cubic),
   });
@@ -48,6 +49,7 @@ export const Scene3Transform: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ background: COLORS.bg }}>
+      <Audio src={staticFile("audio/scene3.wav")} />
       <svg width={1920} height={1080}>
         <g opacity={0.25}>
           <Grid matrix={IDENTITY} />
@@ -66,8 +68,8 @@ export const Scene3Transform: React.FC = () => {
         <circle cx={px} cy={py} r={16} fill={COLORS.point} />
         {label(px + 28, py - 14, t > 0.98 ? "(5, 2)" : "(3, 2)", COLORS.point, 52)}
 
-        {caption("origin stays fixed", fade(frame, 120, 215))}
-        {caption("grid lines stay straight and evenly spaced", fade(frame, 235, 360))}
+        {caption("origin stays fixed", fade(frame, 144, 200))}
+        {caption("grid lines stay straight and evenly spaced", fade(frame, 205, 285))}
       </svg>
     </AbsoluteFill>
   );
