@@ -12,7 +12,7 @@ import { Grid, toScreen } from "../lib/Grid";
 import { COLORS, IDENTITY, Mat, lerpMat } from "../lib/matrix";
 
 export const SCENE1_FPS = 30;
-export const SCENE1_DURATION = 14 * SCENE1_FPS;
+export const SCENE1_DURATION = Math.ceil((11.05 + 1) * SCENE1_FPS);
 
 const fade = (frame: number, start: number, len = 15) =>
   interpolate(frame, [start, start + len], [0, 1], {
@@ -66,8 +66,8 @@ export const Scene1Hook: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const shipTurn = spring({ frame: frame - 105, fps, config: { damping: 18 } });
-  const gridTurn = spring({ frame: frame - 190, fps, config: { damping: 22, mass: 1.4 } });
+  const shipTurn = spring({ frame: frame - 45, fps, config: { damping: 18 } });
+  const gridTurn = spring({ frame: frame - 95, fps, config: { damping: 22, mass: 1.4 } });
   const th = (THETA * Math.PI) / 180;
   const c = Math.cos(th);
   const s = Math.sin(th);
@@ -79,15 +79,18 @@ export const Scene1Hook: React.FC = () => {
   const [sx, sy] = toScreen(m0, m1);
   const shipDeg = THETA * shipTurn + THETA * gridTurn;
 
-  const keyPress = interpolate(frame, [88, 94, 104], [0, 1, 0], {
+  const keyPress = interpolate(frame, [28, 34, 44], [0, 1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const keyOpacity = fade(frame, 45) * (1 - fade(frame, 150));
-  const matOpacity = fade(frame, 300, 30);
+  const keyOpacity = fade(frame, 8) * (1 - fade(frame, 66));
+  const matOpacity = fade(frame, 246, 30);
+  const qIn = fade(frame, 186, 10);
+  const qOpacity = qIn * (1 - fade(frame, 228, 10));
+  const qScale = 0.7 + 0.3 * spring({ frame: frame - 186, fps, config: { damping: 10 } });
   const f = (v: number) => v.toFixed(2).replace("-0.00", "0.00");
   const matCells = [f(c), f(-s), f(s), f(c)];
-  const caption = fade(frame, 195, 20) * (1 - fade(frame, 290, 15));
+  const caption = fade(frame, 100, 15) * (1 - fade(frame, 168, 12));
 
   return (
     <>
@@ -112,6 +115,12 @@ export const Scene1Hook: React.FC = () => {
             </text>
           </g>
       
+          <g opacity={qOpacity} transform={`translate(960 230) scale(${qScale})`}>
+            <text x={0} y={0} textAnchor="middle" fontSize={200} fontWeight={700} fontFamily="Georgia, serif" fill={COLORS.point}>
+              ?
+            </text>
+          </g>
+
           {/* matrix hint */}
           <g opacity={matOpacity} transform="translate(1330 780)">
             <rect x={-40} y={-20} width={470} height={260} rx={24} fill={COLORS.bg} stroke={COLORS.grid} strokeWidth={3} />
@@ -133,11 +142,7 @@ export const Scene1Hook: React.FC = () => {
           </g>
         </svg>
       </AbsoluteFill>
-      <Audio
-        src={staticFile("audio/scene2.wav")}
-        durationInFrames={377.6}
-        from={410}
-      />
+      <Audio src={staticFile("audio/scene1.wav")} />
     </>
   );
 };
