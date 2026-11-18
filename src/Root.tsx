@@ -3,6 +3,8 @@ import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
 import { Title } from "./HelloWorld/Title";
 import { Scene2Basis, SCENE2_DURATION, SCENE2_FPS } from "./scenes/Scene2Basis";
+import { Scene1Hook, SCENE1_DURATION, SCENE1_FPS } from "./scenes/Scene1Hook";
+import { Scene3Transform, SCENE3_DURATION, SCENE3_FPS } from "./scenes/Scene3Transform";
 import { TestClip, TEST_CLIP_DURATION, TEST_CLIP_FPS } from "./TestClip";
 
 // Each <Composition> is an entry in the sidebar!
@@ -65,6 +67,22 @@ export const RemotionRoot: React.FC = () => {
         component={Scene2Basis}
         durationInFrames={SCENE2_DURATION}
         fps={SCENE2_FPS}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Scene1Hook"
+        component={Scene1Hook}
+        durationInFrames={SCENE1_DURATION}
+        fps={SCENE1_FPS}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Scene3Transform"
+        component={Scene3Transform}
+        durationInFrames={SCENE3_DURATION}
+        fps={SCENE3_FPS}
         width={1920}
         height={1080}
       />
