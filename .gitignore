@@ -5,3 +5,10 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Large/generated artifacts
+models/
+output.mp4
+
+# Lab collect skill must not be committed
+.claude/skills/lab06-collect/
