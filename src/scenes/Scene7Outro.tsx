@@ -5,7 +5,7 @@ import { Arrow, Grid, toScreen } from "../lib/Grid";
 import { COLORS, IDENTITY, Mat, apply, lerpMat } from "../lib/matrix";
 
 export const SCENE7_FPS = 30;
-export const SCENE7_DURATION = Math.ceil((8.0 + 1.5) * SCENE7_FPS); // narration 8.0 s + tail
+export const SCENE7_DURATION = Math.ceil((8.75 + 1.5) * SCENE7_FPS); // narration 8.75 s + tail
 
 const FINAL: Mat = [1, 1, 0, 1];
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -14,15 +14,15 @@ const FONT = "Georgia, serif";
 export const Scene7Outro: React.FC = () => {
   const frame = useCurrentFrame();
 
-  // grid + arrows land at "Where do the two basis arrows land?" (3.77 s = frame 113)
-  const t = interpolate(frame, [113, 170], [0, 1], { ...clamp, easing: Easing.inOut(Easing.cubic) });
+  // grid + arrows land at "Where do the two basis arrows land?" (4.11 s = frame 123)
+  const t = interpolate(frame, [123, 180], [0, 1], { ...clamp, easing: Easing.inOut(Easing.cubic) });
   const m = lerpMat(IDENTITY, FINAL, t);
-  const gridIn = interpolate(frame, [95, 120], [0, 1], clamp);
-  const arrowsIn = interpolate(frame, [100, 120], [0, 1], clamp);
+  const gridIn = interpolate(frame, [115, 135], [0, 1], clamp);
+  const arrowsIn = interpolate(frame, [120, 135], [0, 1], clamp);
 
   const boxIn = interpolate(frame, [8, 36], [0, 1], clamp);
-  const colorT = interpolate(frame, [76, 96], [0, 1], clamp); // "It's a recipe."
-  const textIn = interpolate(frame, [178, 208], [0, 1], clamp);
+  const colorT = interpolate(frame, [87, 105], [0, 1], clamp); // "It's a recipe."
+  const textIn = interpolate(frame, [192, 220], [0, 1], clamp);
 
   const mix = (c: string) => (colorT > 0.5 ? c : COLORS.text);
   const entries: [string, string, number, number, string][] = [
@@ -55,7 +55,7 @@ export const Scene7Outro: React.FC = () => {
 
         {/* matrix panel */}
         <g opacity={boxIn}>
-          <rect x={bx - 40} y={by - 60} width={bw + 80} height={bh + 120} rx={24} fill={COLORS.bg} opacity={0.92} />
+          <rect x={bx - 40} y={by - 60} width={bw + 80} height={bh + 120} rx={24} fill={COLORS.bg} />
           {/* brackets */}
           <path d={`M ${bx + 30} ${by} H ${bx} V ${by + bh} H ${bx + 30}`} fill="none" stroke={COLORS.text} strokeWidth={6} />
           <path d={`M ${bx + bw - 30} ${by} H ${bx + bw} V ${by + bh} H ${bx + bw - 30}`} fill="none" stroke={COLORS.text} strokeWidth={6} />
@@ -83,7 +83,7 @@ export const Scene7Outro: React.FC = () => {
 
         {/* closing line */}
         <g opacity={textIn}>
-          <rect x={360} y={920} width={1200} height={110} rx={20} fill={COLORS.bg} opacity={0.92} />
+          <rect x={360} y={920} width={1200} height={110} rx={20} fill={COLORS.bg} />
           <text x={960} y={993} textAnchor="middle" fill={COLORS.text} fontSize={64} fontFamily={FONT}>
             A matrix = where{" "}
             <tspan fill={COLORS.ihat} fontStyle="italic">î</tspan> and{" "}
