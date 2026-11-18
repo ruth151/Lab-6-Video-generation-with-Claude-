@@ -12,7 +12,7 @@ import { Grid, toScreen } from "../lib/Grid";
 import { COLORS, IDENTITY, Mat, lerpMat } from "../lib/matrix";
 
 export const SCENE1_FPS = 30;
-export const SCENE1_DURATION = Math.ceil((11.05 + 1) * SCENE1_FPS);
+export const SCENE1_DURATION = Math.ceil((11.65 + 1) * SCENE1_FPS);
 
 const fade = (frame: number, start: number, len = 15) =>
   interpolate(frame, [start, start + len], [0, 1], {
@@ -66,8 +66,8 @@ export const Scene1Hook: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const shipTurn = spring({ frame: frame - 45, fps, config: { damping: 18 } });
-  const gridTurn = spring({ frame: frame - 95, fps, config: { damping: 22, mass: 1.4 } });
+  const shipTurn = spring({ frame: frame - 52, fps, config: { damping: 18 } });
+  const gridTurn = spring({ frame: frame - 100, fps, config: { damping: 22, mass: 1.4 } });
   const th = (THETA * Math.PI) / 180;
   const c = Math.cos(th);
   const s = Math.sin(th);
@@ -79,18 +79,18 @@ export const Scene1Hook: React.FC = () => {
   const [sx, sy] = toScreen(m0, m1);
   const shipDeg = THETA * shipTurn + THETA * gridTurn;
 
-  const keyPress = interpolate(frame, [28, 34, 44], [0, 1, 0], {
+  const keyPress = interpolate(frame, [34, 40, 50], [0, 1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const keyOpacity = fade(frame, 8) * (1 - fade(frame, 66));
-  const matOpacity = fade(frame, 246, 30);
-  const qIn = fade(frame, 186, 10);
-  const qOpacity = qIn * (1 - fade(frame, 228, 10));
-  const qScale = 0.7 + 0.3 * spring({ frame: frame - 186, fps, config: { damping: 10 } });
+  const keyOpacity = fade(frame, 8) * (1 - fade(frame, 74));
+  const matOpacity = fade(frame, 256, 30);
+  const qIn = fade(frame, 194, 10);
+  const qOpacity = qIn * (1 - fade(frame, 238, 10));
+  const qScale = 0.7 + 0.3 * spring({ frame: frame - 194, fps, config: { damping: 10 } });
   const f = (v: number) => v.toFixed(2).replace("-0.00", "0.00");
   const matCells = [f(c), f(-s), f(s), f(c)];
-  const caption = fade(frame, 100, 15) * (1 - fade(frame, 168, 12));
+  const caption = fade(frame, 106, 15) * (1 - fade(frame, 170, 12));
 
   return (
     <>
