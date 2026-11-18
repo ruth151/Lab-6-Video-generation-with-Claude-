@@ -9,6 +9,7 @@ import { Scene4Columns, SCENE4_DURATION, SCENE4_FPS } from "./scenes/Scene4Colum
 import { Scene5Examples, SCENE5_DURATION, SCENE5_FPS } from "./scenes/Scene5Examples";
 import { Scene6Determinant, SCENE6_DURATION, SCENE6_FPS } from "./scenes/Scene6Determinant";
 import { Scene7Outro, SCENE7_DURATION, SCENE7_FPS } from "./scenes/Scene7Outro";
+import { FullVideo, FULL_DURATION, FULL_FPS } from "./FullVideo";
 import { TestClip, TEST_CLIP_DURATION, TEST_CLIP_FPS } from "./TestClip";
 
 // Each <Composition> is an entry in the sidebar!
@@ -119,6 +120,14 @@ export const RemotionRoot: React.FC = () => {
         component={Scene7Outro}
         durationInFrames={SCENE7_DURATION}
         fps={SCENE7_FPS}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="FullVideo"
+        component={FullVideo}
+        durationInFrames={FULL_DURATION}
+        fps={FULL_FPS}
         width={1920}
         height={1080}
       />
