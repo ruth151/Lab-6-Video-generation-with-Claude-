@@ -10,7 +10,7 @@ import { Arrow, Grid, toScreen } from "../lib/Grid";
 import { COLORS, IDENTITY } from "../lib/matrix";
 
 export const SCENE2_FPS = 30;
-export const SCENE2_DURATION = 14 * SCENE2_FPS; // narration 12.6 s + tail
+export const SCENE2_DURATION = Math.ceil((13.08 + 1) * SCENE2_FPS); // narration 13.08 s + tail
 
 const fade = (frame: number, start: number, len = 15) =>
   interpolate(frame, [start, start + len], [0, 1], {
@@ -40,36 +40,31 @@ export const Scene2Basis: React.FC = () => {
           <Grid matrix={IDENTITY} />
       
           {/* i-hat */}
-          <g opacity={fade(frame, 120)}>
+          <g opacity={fade(frame, 168)}>
             <Arrow to={[1, 0]} color={COLORS.ihat} />
             {label(ix - 30, iy - 25, "î", COLORS.ihat)}
           </g>
           {/* j-hat */}
-          <g opacity={fade(frame, 190)}>
+          <g opacity={fade(frame, 232)}>
             <Arrow to={[0, 1]} color={COLORS.jhat} />
             {label(jx - 55, jy + 10, "ĵ", COLORS.jhat)}
           </g>
       
           {/* 3 steps along i-hat, then 2 along j-hat */}
-          <g opacity={fade(frame, 297)}>
+          <g opacity={fade(frame, 322)}>
             <line x1={ox} y1={oy} x2={x3} y2={y3} stroke={COLORS.ihat} strokeWidth={7} strokeDasharray="14 10" />
             {label((ox + x3) / 2 - 50, oy + 80, "3 × î", COLORS.ihat, 48)}
           </g>
-          <g opacity={fade(frame, 336)}>
+          <g opacity={fade(frame, 372)}>
             <line x1={x3} y1={y3} x2={px} y2={py} stroke={COLORS.jhat} strokeWidth={7} strokeDasharray="14 10" />
             {label(x3 + 25, (y3 + py) / 2, "2 × ĵ", COLORS.jhat, 48)}
           </g>
-          <g opacity={fade(frame, 270)}>
+          <g opacity={fade(frame, 268)}>
             <circle cx={px} cy={py} r={16} fill={COLORS.point} />
             {label(px + 28, py - 14, "(3, 2)", COLORS.point, 52)}
           </g>
         </svg>
       </AbsoluteFill>
-      <Audio
-        src={staticFile("audio/scene2.wav")}
-        durationInFrames={377.6}
-        from={49}
-      />
     </>
   );
 };
