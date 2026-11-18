@@ -2,6 +2,10 @@
 
 A ~98-second narrated explainer video, built entirely in code with [Remotion](https://www.remotion.dev/) (React) and offline text-to-speech ([Kokoro](https://github.com/thewh1teagle/kokoro-onnx)). It was made in a 90-minute lab on building with AI coding agents.
 
+<p align="center"><img src="docs/preview.gif" alt="Preview: game examples scene" width="640"></p>
+
+**▶ [Watch the full video](docs/explainer-video.mp4)** (98 s, 720p, with narration)
+
 **Takeaway:** a 2×2 matrix is a recipe that says where the two basis vectors land, and every other point in the plane moves along with them.
 
 ## What the video covers
